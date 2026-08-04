@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { LanguageSwitch } from "../../components/LanguageSwitch";
 import { publicationCategories, type PublicationCategory } from "../data";
 
 export function generateStaticParams() {
@@ -20,7 +21,7 @@ export default async function PublicationCategoryPage({
     <main className="archive-page">
       <nav className="nav">
         <Link className="wordmark" href="/">VCAR<br />LAB.</Link>
-        <Link href="/">← Back to Lab</Link>
+        <div className="nav-links"><Link href="/">← Back to Lab</Link><LanguageSwitch locale="ko" koreanPath={`/publications/${activeCategory}/`} englishPath={`/en/publications/${activeCategory}/`} /></div>
       </nav>
 
       <section className="archive-header">

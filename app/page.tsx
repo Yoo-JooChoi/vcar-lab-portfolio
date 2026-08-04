@@ -1,20 +1,10 @@
+import { LanguageSwitch } from "./components/LanguageSwitch";
+import { projectsKo } from "./projects-data";
+
 const members = [
   ["최유주", "Lab Director / Professor", "Computer Graphics · Image Analysis · Human-Computer Interaction"],
   ["김유민", "M.S. Student", "Augmented Reality · 3D Gaussian Splatting"],
   ["최유빈", "M.S. Student", "3D Gaussian Splatting · Digital Human"],
-];
-
-const projects = [
-  ["01", "환자 맞춤형 복부 수술 시뮬레이터", "담낭 절제술 물리 엔진과 장기 변형 수학 모델 연구 · 보건복지부/한국보건산업진흥원", "2023"],
-  ["02", "실/가상 연동 MICE 플랫폼", "오프라인 전시와 3D 가상전시를 연결하는 AI 기반 방문자 분석·상담 플랫폼 · 한국콘텐츠진흥원", "2022 — 2023"],
-  ["03", "물리기반 실시간 시뮬레이션 엔진", "XR 환경을 위한 실시간 물리 시뮬레이션 엔진 개발 · ㈜휴톰", "2021 — 2022"],
-  ["04", "동적 공간증강현실 도구", "대화형 가상공간 구축을 위한 프로젝션 기반 Spatial AR 기술 · 한국연구재단", "2017 — 2020"],
-  ["05", "Visual Mesh Saliency Map", "Adaptive 3D Slicing을 위한 시각적 메시 중요도 맵 생성 라이브러리 성능 최적화", "2016 — 2017"],
-  ["06", "모바일 AR 콘텐츠 빌더", "모바일 증강현실 콘텐츠 저작 기술 개발", "2016"],
-  ["07", "모바일 3D 변형 물체 시뮬레이션", "모바일 디바이스에 적합한 실시간 3D 변형 물체 시뮬레이션 최적화 · 한국연구재단", "2015 — 2017"],
-  ["08", "모바일 AR 교육 콘텐츠", "모바일 AR 교육 콘텐츠 프로토타입 설계 및 구현", "2013 — 2014"],
-  ["09", "몰입형 VR 영상 왜곡 보정", "HMD 기반 몰입형 가상현실 시스템의 영상 왜곡 보정 알고리즘 설계", "2014"],
-  ["10", "스마트 감시·제스처 인터랙션", "다중 사용자 제스처 인터랙션, CCTV 지능형 검색, Active Auto Tracking 기술 개발", "2009 — 2013"],
 ];
 
 const internationalPublications = [
@@ -58,12 +48,12 @@ const lectures = [
 
 export default function Home() {
   return <main>
-    <nav className="nav" aria-label="주요 탐색"><a className="wordmark" href="#top">VCAR<br />LAB.</a><div className="nav-links"><a href="#about">About</a><a href="#projects">Projects</a><a href="#contact">Contact</a></div></nav>
+    <nav className="nav" aria-label="주요 탐색"><a className="wordmark" href="#top">VCAR<br />LAB.</a><div className="nav-links"><a href="#about">About</a><a href="#projects">Projects</a><a href="#contact">Contact</a><LanguageSwitch locale="ko" koreanPath="/" englishPath="/en/" /></div></nav>
     <section className="hero" id="top"><p className="eyebrow">Seoul, Korea · Est. 2021</p><h1>Visual Computing<br /><em>&amp; Augmented Reality</em></h1><div className="hero-bottom"><p>기술과 감각 사이,<br />새로운 현실의 장면을 만듭니다.</p><span>Scroll to enter ↓</span></div></section>
-    <section id="about" className="section about"><p className="section-label">01 / About</p><div className="section-content"><h2>시각 기술로<br />현실을 확장합니다.</h2><div className="body-copy"><p>비주얼 컴퓨팅 및 증강현실 연구실(Visual Computing &amp; Augmented Reality Lab.)에서는 컴퓨터 그래픽스 및 영상처리 기술을 기반으로 3차원 입체 가시화, Human Pose Estimation, 다양한 정보 가시화 기법에 관한 연구를 수행하고 있습니다.</p><p>또한 실제 환경에 가상의 사물이나 정보를 정합하여 보여주는 증강현실을 위한 기반 기술을 연구하고, 이를 활용한 다양한 응용 시스템을 개발하고 있습니다.</p></div></div></section>
+    <section id="about" className="section about"><p className="section-label">01 / About</p><div className="section-content"><h2>시각 기술로<br />현실을 확장합니다.</h2><div className="body-copy"><p>비주얼 컴퓨팅 및 증강현실 연구실(Visual Computing &amp; Augmented Reality Lab.)에서는 컴퓨터 그래픽스 및 영상처리 기술을 기반으로 3차원 입체 가시화, 동작분석, HCI, AR 및 다양한 정보 가시화 기법에 관한 연구를 수행하고 있습니다.</p><p>또한 실제 환경에 가상의 사물이나 정보를 정합하여 보여주는 증강현실을 위한 기반 기술을 연구하고, 이를 활용한 다양한 응용 시스템을 개발하고 있습니다.</p></div></div></section>
     <section id="members" className="section members"><p className="section-label">02 / Members</p><div><div className="member-grid">{members.map(([name, role, text], i) => <article className="member" key={name}><div className="portrait"><span>{String(i + 1).padStart(2, "0")}</span></div><h3>{name}</h3><p className="role">{role}</p><p>{text}</p></article>)}</div><a className="professor-link" href="/professor"><span>Professor / 01</span><strong>최유주 교수</strong><em>Profile</em><b>↗</b></a></div></section>
-    <section id="projects" className="section projects"><p className="section-label">03 / Projects</p><div className="project-list">{projects.map(([number, title, text, year]) => <article className="project" key={number}><span>{number}</span><div><h3>{title}</h3><p>{text}</p></div><time>{year}</time></article>)}</div></section>
-    <section id="publications" className="section compact-section"><p className="section-label">04 / Publications</p><div><h2>연구의 기록을<br /><em>차분히 살펴보세요.</em></h2><p className="body-copy publication-intro">국제저널, 국내저널, 저술, 특허등록, 프로그램 등록을 각각의 페이지에서 전체 목록으로 확인할 수 있습니다.</p><a className="archive-link" href="/publications">Publications Archive <span>↗</span></a></div></section>
+    <section id="projects" className="section projects"><p className="section-label">03 / Projects</p><div className="project-list">{projectsKo.map(([number, title, text, year]) => <article className="project" key={number}><span>{number}</span><div><h3>{title}</h3><p>{text}</p></div><time>{year}</time></article>)}</div></section>
+    <section id="publications" className="section compact-section"><p className="section-label">04 / Publications</p><div><h2>연구의 기록을<br /><em>모았습니다.</em></h2><p className="body-copy publication-intro">국제저널, 국내저널, 저술, 특허등록, 프로그램 등록을 각각의 페이지에서 전체 목록으로 확인할 수 있습니다.</p><a className="archive-link" href="/publications">Publications Archive <span>↗</span></a></div></section>
     <section id="lectures" className="section compact-section lectures"><p className="section-label">05 / Lectures</p><div><h2>배움은<br /><em>함께 바라보는 일.</em></h2><p className="scroll-note">전체 강의 목록 · 세로로 스크롤해 확인하세요</p><div className="lecture-scroll">{lectures.map(([title, description], index) => <article className="lecture-item" key={title}><span>{String(index + 1).padStart(2, "0")}</span><div><h3>{title}</h3><p>{description}</p></div></article>)}</div></div></section>
     <section id="contact" className="contact"><p className="section-label">06 / Contact</p><h2>Let&apos;s make<br />the <em>unseen</em> visible.</h2><a className="contact-link" href="mailto:yjchoi@smit.ac.kr">yjchoi@smit.ac.kr <span>↗</span></a><div className="contact-info"><p>Seoul Media Institute of Technology<br />서울미디어대학원대학교</p><p>Visual Computing &amp; Augmented Reality Lab.</p></div></section>
     <footer><span>© 2026 VCAR LAB.</span><span>All scenes reserved.</span></footer>
