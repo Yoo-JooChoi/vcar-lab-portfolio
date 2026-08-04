@@ -1,22 +1,54 @@
 import Link from "next/link";
+import { publicationCategories, type PublicationCategory } from "../data";
 
-const categories = {
-  international: { ko: "국제저널", en: "International Journals", items: [
-    "Visualization and Analysis for Mesh Surface Curvature Based on Interpolation — KSII Transactions on Internet and Information Systems (2025)", "Real-Time Physics Simulation Method for XR Application — Computers (2025)", "Cylindrical depth image based customized helical bone plate design — Medical Engineering and Physics (2024)", "Volumetric Object Modeling using Internal Shape Preserving Constraint in Unity 3D — Intelligent Automation & Soft Computing (2022)", "Cutting Simulation in Unity 3D using Position based Dynamics with Various Refinement Levels — Electronics (2022)", "Optimization of Material Properties for Coherent Behavior across Multi-resolution Cloth Models — KSII Transactions on Internet and Information Systems (2018)", "Parallel Cloth Simulation with GPGPU — Multimedia Tools and Applications (2018)", "Parallel cloth simulation with effective collision detection for interactive AR application — Multimedia Tools and Applications (2018)", "Multi-Scale Surface Curvature based on Mesh Simplification — Lecture Notes in Electrical Engineering (2017)", "Design and Implementation of Cloth Simulation using GLSL 4.3 — Advanced Science Letters (2017)", "Augmented-Reality Survey: from Concept to Application — KSII Transactions on Internet and Information Systems (2017)", "Interactive Authoring Tool for Mobile Augmented Reality Content — Journal of Information Processing Systems (2016)", "Target Model Construction Algorithm for Robust Real-Time Mean-Shift Tracking — Sensors (2014)", "Rapid Pairwise Intersection Tests using Programmable GPUs — The Visual Computer (2006)", "Adaptive Surface Deformable Model with Shape-Preserving Spring — Computer Animation and Virtual Worlds (2005)", "Self-CD: Interactive Self-Collision Detection for Deformable Body Simulation using GPUs — Asia Simulation Conference (2004)"
-  ] },
-  domestic: { ko: "국내저널", en: "Domestic Journals", items: [
-    "Image Quality Enhancement for Arbitrary Viewpoint Synthesis based on Accurate Inter-Camera Point Matching — 한국컴퓨터정보학회논문지 (2025)", "CNN-based Gesture Recognition using Motion History Image — Journal of Internet Computing and Services (2020)", "제스처 인식 기반의 인터랙티브 미디어 콘텐츠 제작 프레임워크 구현 — 방송공학회논문지 (2020)", "Real-Time Collision Response Between Cloth and Sphere Object in Unity — Journal of Internet Computing and Services (2018)", "3D 지도와 결합된 실시간 증강현실 건물 안내 시스템의 설계 및 구현 — 한국컴퓨터그래픽스학회 논문지 (2018)", "모바일 게임을 위한 증강현실 기반 직관적 변형 직물객체 조작 — KIPS Transactions on Software and Data Engineering (2018)", "무안경 입체 영상의 화질 차이에 대한 뇌파 변화 분석 — 한국지식정보기술학회 논문지 (2018)", "3차원 형상 분석 기반 단백질 유사성 분석 — 한국지식정보기술학회 논문지 (2018)", "변형 물체를 위한 GPU 기반 병렬 충돌 감지 — KIPS Transactions on Software and Data Engineering (2018)", "OpenGL과 Unity 간 GPU를 이용한 Particle Simulation의 성능 비교 — 한국정보처리학회 논문지 (2017)", "모바일 AR 기반 카오스의 시각적 표현에 관한 연구 — 한국기초조형학회 논문지 (2016)", "변형물체 시뮬레이션을 활용한 비마커기반 증강현실 시스템 구현 — 한국인터넷정보학회 논문지 (2016)", "모바일 AR 기반 낱말카드 교육 콘텐츠 설계 및 구현 — 한국콘텐츠학회 논문지 (2015)", "지능형 감시 시스템을 위한 PTZ 카메라 기반 액티브 객체 추적 — 정보과학회논문지 (2011)", "IPTV를 위한 다차원 콘텐츠 검색 브라우저의 설계 — 한국콘텐츠학회 논문지 (2010)", "GPGPU 기반의 실시간 충돌감지 — 전자공학회지 (2009)", "다해상도 스네이크를 통한 경동맥 내막-중막 경계선 자동추출 — 한국정보처리학회 논문지 A (2007)", "실시간 인터랙션을 위한 다중해상도 변형 모델링 — 한국컴퓨터그래픽스학회 논문지 (2004)"
-  ] },
-  books: { ko: "저술", en: "Books & Chapters", items: ["지능형 영상감시 시스템의 원리 및 응용 · Jinhan M&B (2011)", "Chapter 4: A Robust Hand Recognition In Varying Illumination · Advances in Human-Computer Interaction (2008)"] },
-  patents: { ko: "특허등록", en: "Patents", items: ["XR 환경 구축을 위한 다중 프로젝션 시스템에서의 ROI 추적 및 최적화 기술 (2024)", "실시간 객체 추적방법 (2014)", "팬-틸트-줌 카메라 및 그 카메라의 객체 검출방법 (2012)", "영상 처리 시스템에서의 색 보정 장치 및 방법 (2011)", "감시 카메라를 이용한 지능형 영상 검색 방법 및 시스템 (2011)", "멀티미디어 컨텐츠의 표시방법 (2011)", "최대마진분류기를 이용한 의상 분류 기법 (2011)", "3차원 사용자 인터페이스 방법 (2011)", "조명변화 환경하에서 촬영된 다중 영상에서 의상 색상유사성 판별 방법 (2010)", "인체를 포함하는 실시간 입력 영상에서 피부 영역 검출 방법 (2009)", "동적객체 영역 추출방법 및 장치 (2008)", "모바일 기기 기반 사용자 중심형 전시관 정보 안내 시스템 및 방법 (2007)", "뇌질환의 진단보조를 위한 뇌 해마 분석 방법 (2007)"] },
-  software: { ko: "프로그램 등록", en: "Software Registrations", items: ["핸드 브러쉬 드로잉 시스템 (2019)", "동적 프로젝션 매핑 콘텐츠 저작 도구 (2019)", "프로젝션 기반 그림자 벽화 그리기 소프트웨어 (2019)", "모바일 증강현실 콘텐츠 빌더 (2016)", "다중 카메라 촬영 영상 보정 프로그램 (2007)"] },
-} as const;
+export function generateStaticParams() {
+  return Object.keys(publicationCategories).map((category) => ({ category }));
+}
 
-type Category = keyof typeof categories;
-export function generateStaticParams() { return Object.keys(categories).map((category) => ({ category })); }
-
-export default async function PublicationCategory({ params }: { params: Promise<{ category: string }> }) {
+export default async function PublicationCategoryPage({
+  params,
+}: {
+  params: Promise<{ category: string }>;
+}) {
   const { category } = await params;
-  const item = categories[category as Category] ?? categories.international;
-  return <main className="archive-page"><nav className="nav"><Link className="wordmark" href="/">VCAR<br />LAB.</Link><Link href="/">← Back to Lab</Link></nav><section className="archive-header"><p className="section-label">Publications / {item.ko}</p><h1>{item.en}</h1><p>{item.ko} 목록을 세로로 스크롤해 살펴보세요.</p></section><nav className="archive-tabs" aria-label="논문 분류">{Object.entries(categories).map(([key, value]) => <Link className={key === category ? "active" : ""} href={`/publications/${key}`} key={key}>{value.ko}</Link>)}</nav><section className="text-archive">{item.items.map((entry, index) => <article key={entry}><span>{String(index + 1).padStart(2, "0")}</span><p>{entry}</p></article>)}</section></main>;
+  const activeCategory = category in publicationCategories
+    ? (category as PublicationCategory)
+    : "international";
+  const item = publicationCategories[activeCategory];
+
+  return (
+    <main className="archive-page">
+      <nav className="nav">
+        <Link className="wordmark" href="/">VCAR<br />LAB.</Link>
+        <Link href="/">← Back to Lab</Link>
+      </nav>
+
+      <section className="archive-header">
+        <p className="section-label">Publications / {item.ko}</p>
+        <h1>{item.en}</h1>
+        <p>{item.ko} 전체 {item.items.length}건을 세로로 스크롤해 살펴보세요.</p>
+      </section>
+
+      <nav className="archive-tabs" aria-label="논문 분류">
+        {Object.entries(publicationCategories).map(([key, value]) => (
+          <Link
+            className={key === activeCategory ? "active" : ""}
+            href={`/publications/${key}`}
+            key={key}
+          >
+            {value.ko}
+          </Link>
+        ))}
+      </nav>
+
+      <section className="text-archive">
+        {item.items.map((entry, index) => (
+          <article key={`${activeCategory}-${index}`}>
+            <span>{String(index + 1).padStart(2, "0")}</span>
+            <p>{entry}</p>
+          </article>
+        ))}
+      </section>
+    </main>
+  );
 }
