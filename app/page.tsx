@@ -2,9 +2,9 @@ import { LanguageSwitch } from "./components/LanguageSwitch";
 import { projectsKo } from "./projects-data";
 
 const members = [
-  ["최유주", "Lab Director / Professor", "Computer Graphics · Image Analysis · Human-Computer Interaction"],
-  ["김유민", "M.S. Student", "Augmented Reality · 3D Gaussian Splatting"],
-  ["최유빈", "M.S. Student", "3D Gaussian Splatting · Digital Human"],
+  ["최유주", "Lab Director / Professor", "Computer Graphics · Image Analysis · Human-Computer Interaction", "/members/yoo-joo-choi.png"],
+  ["김유민", "M.S. Student", "Augmented Reality · 3D Gaussian Splatting", "/members/yu-min-kim.jpg"],
+  ["최유빈", "M.S. Student", "3D Gaussian Splatting · Digital Human", "/members/yu-bin-choi.jpg"],
 ];
 
 const internationalPublications = [
@@ -49,9 +49,9 @@ const lectures = [
 export default function Home() {
   return <main>
     <nav className="nav" aria-label="주요 탐색"><a className="wordmark" href="#top">VCAR<br />LAB.</a><div className="nav-links"><a href="#about">About</a><a href="#projects">Projects</a><a href="#contact">Contact</a><LanguageSwitch locale="ko" koreanPath="/" englishPath="/en/" /></div></nav>
-    <section className="hero" id="top"><p className="eyebrow">Seoul, Korea · Est. 2021</p><h1>Visual Computing<br /><em>&amp; Augmented Reality</em></h1><div className="hero-bottom"><p>기술과 감각 사이,<br />새로운 현실의 장면을 만듭니다.</p><span>Scroll to enter ↓</span></div></section>
+    <section className="hero" id="top"><video className="hero-video" autoPlay muted loop playsInline preload="metadata" aria-hidden="true"><source src="/hero-vcar.mp4" type="video/mp4" /></video><div className="hero-video-overlay" aria-hidden="true" /><p className="eyebrow">Seoul, Korea · Est. 2021</p><h1>Visual Computing<br /><em>&amp; Augmented Reality</em></h1><div className="hero-bottom"><p>기술과 감각 사이,<br />새로운 현실의 장면을 만듭니다.</p><span>Scroll to enter ↓</span></div></section>
     <section id="about" className="section about"><p className="section-label">01 / About</p><div className="section-content"><h2>시각 기술로<br />현실을 확장합니다.</h2><div className="body-copy"><p>비주얼 컴퓨팅 및 증강현실 연구실(Visual Computing &amp; Augmented Reality Lab.)에서는 컴퓨터 그래픽스 및 영상처리 기술을 기반으로 3차원 입체 가시화, 동작분석, HCI 및 다양한 정보 가시화 기법에 관한 연구를 수행하고 있습니다.</p><p>또한 실제 환경에 가상의 사물이나 정보를 정합하여 보여주는 증강현실을 위한 기반 기술을 연구하고, 이를 활용한 다양한 응용 시스템을 개발하고 있습니다.</p></div></div></section>
-    <section id="members" className="section members"><p className="section-label">02 / Members</p><div><div className="member-grid">{members.map(([name, role, text], i) => <article className="member" key={name}><div className="portrait"><span>{String(i + 1).padStart(2, "0")}</span></div><h3>{name}</h3><p className="role">{role}</p><p>{text}</p></article>)}</div><a className="professor-link" href="/professor"><span>Professor / 01</span><strong>최유주 교수</strong><em>Profile</em><b>↗</b></a></div></section>
+    <section id="members" className="section members"><p className="section-label">02 / Members</p><div><div className="member-grid">{members.map(([name, role, text, image], i) => <article className="member" key={name}><div className="portrait"><img src={image} alt={`${name} 프로필 사진`} /><span>{String(i + 1).padStart(2, "0")}</span></div><h3>{name}</h3><p className="role">{role}</p><p>{text}</p></article>)}</div><a className="professor-link" href="/professor"><span>Professor / 01</span><strong>최유주 교수</strong><em>Profile</em><b>↗</b></a></div></section>
     <section id="projects" className="section projects"><p className="section-label">03 / Projects</p><div><p className="scroll-note">전체 프로젝트 29건 · 세로로 스크롤해 확인하세요</p><div className="project-scroll"><div className="project-list">{projectsKo.map(([number, title, text, year]) => <article className="project" key={number}><span>{number}</span><div><h3>{title}</h3><p>{text}</p></div><time>{year}</time></article>)}</div></div></div></section>
     <section id="publications" className="section compact-section"><p className="section-label">04 / Publications</p><div><h2>연구의 기록을<br /><em>모았습니다.</em></h2><p className="body-copy publication-intro">국제저널, 국내저널, 저술, 특허등록, 프로그램 등록을 각각의 페이지에서 전체 목록으로 확인할 수 있습니다.</p><a className="archive-link" href="/publications">Publications Archive <span>↗</span></a></div></section>
     <section id="lectures" className="section compact-section lectures"><p className="section-label">05 / Lectures</p><div><h2>배움은<br /><em>함께 바라보는 일.</em></h2><p className="scroll-note">전체 강의 목록 · 세로로 스크롤해 확인하세요</p><div className="lecture-scroll">{lectures.map(([title, description], index) => <article className="lecture-item" key={title}><span>{String(index + 1).padStart(2, "0")}</span><div><h3>{title}</h3><p>{description}</p></div></article>)}</div></div></section>
